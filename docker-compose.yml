@@ -16,7 +16,7 @@ services:
       retries: 5
 
   prefect-server:
-    image: prefecthq/prefect:3-latest
+    build: .
     depends_on:
       postgres:
         condition: service_healthy
@@ -24,6 +24,8 @@ services:
       PREFECT_API_DATABASE_CONNECTION_URL: postgresql+asyncpg://prefect:prefect@postgres:5432/prefect
       PREFECT_SERVER_API_HOST: 0.0.0.0
       PREFECT_SERVER_API_PORT: 4200
+    env_file:
+      - .env
     command: >
       /bin/sh -c "
       echo 'Initializing database...';
