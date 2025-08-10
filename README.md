@@ -7,6 +7,9 @@
 docker compose up -d --build <br/> 
 docker compose logs -f prefect-server <br/>
 
+<br/>
+With the help of github-create-secret file, automatically create the secret for the github repositories. We set the github key for the deployments and call them for other deployments.
+<br/>
 **2. Set Prefect API URL:**
 export PREFECT_API_URL=http://localhost:4200/api <br/>
 prefect config set PREFECT_API_URL=http://localhost:4200/api <br/> 
