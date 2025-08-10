@@ -31,7 +31,9 @@ services:
       echo 'Initializing database...';
       prefect server database upgrade;
       echo 'Starting Prefect server...';
-      prefect server start
+      prefect server start;
+      echo 'Setting up GitHub block...';
+      python setup_github.py
       "
     ports:
       - "4200:4200"
