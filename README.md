@@ -23,8 +23,15 @@ prefect worker start --pool my-pool <br/>
 nohup prefect worker start --pool my-pool > worker.log 2>&1 & <br/>
 
 **5. Deactivate Everything:**
-pkill -f "prefect worker" <br/>
-docker compose down -v <br/>
+<br/> 
+```pkill -f "prefect worker"``` it kills the prefect worker, that executes jobs and everything 
+<br/>
+<br/>
+```docker-compose down``` if you used this one, you will be only shut down the service but you kept the volume. Therefore, you can reach the same deployments, flows and tasks, schedules -everything- after the next docker-compose up -d command. 
+<br/>
+<br/>
+```docker-compose down -v --remove-oprhans``` if you used this one, it will remove the volumes as well which means your deployment and everything will be gone.  
+<br/>
 
 **6. How it works in Prefect3?**
 
@@ -52,6 +59,6 @@ After I run this with same environment with prefect deployment, It will run auto
 There are many methods for deployments but in my codebase, I need github configuration. 
 <br/>
 
-
+<br/>
 **Addition:** I created a venv but it should not be required. Somehow without venv, I can not run it. That's why I created it. 
 <br/>
