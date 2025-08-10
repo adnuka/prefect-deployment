@@ -1,0 +1,14 @@
+pull:
+  - prefect.deployments.steps.git_clone:
+      repository: https://github.com/adnuka/flow-example.git
+      branch: main
+      access_token: "{{ prefect.blocks.secret.github-token }}"
+build: null
+push: null
+
+deployments:
+  - name: hello-world-deployment
+    entrypoint: test-flow-from-github.py:hello_world_flow
+    parameters: {}  # Use default values from the function in GitHub
+    work_pool:
+      name: my-pool

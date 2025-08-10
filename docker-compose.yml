@@ -31,9 +31,7 @@ services:
       echo 'Initializing database...';
       prefect server database upgrade;
       echo 'Starting Prefect server...';
-      prefect server start;
-      echo 'Setting up GitHub block...';
-      python setup_github.py
+      prefect server start
       "
     ports:
       - "4200:4200"
@@ -44,6 +42,26 @@ services:
       timeout: 10s
       retries: 20
       start_period: 30s
+
+  prefect-init:
+    build: .
+    depends_on:
+      prefect-server:
+        condition: service_healthy
+    environment:
+      PREFECT_API_DATABASE_CONNECTION_URL: postgresql+asyncpg://prefect:prefect@postgres:5432/prefect
+      PREFECT_API_URL: http://prefect-server:4200/api
+    env_file:
+      - .env
+    command: >
+      /bin/sh -c "
+      echo 'Waiting for Prefect server to be fully ready...';
+      sleep 10;
+      echo 'Setting up GitHub block...';
+      python github-create-secret.py;
+      echo 'GitHub block setup completed successfully!'
+      "
+    restart: on-failure
 
 volumes:
   postgres_data:
