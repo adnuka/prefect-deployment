@@ -4,7 +4,7 @@
 <br/> First, you need to set dockerfile for any other packages. If you are not do this, you can not import custom libraries which does not exist in default base image like **prefect-github**
 
 **1. Docker Compose Up:**
-docker compose up -d <br/> 
+docker compose up -d --build <br/> 
 docker compose logs -f prefect-server <br/>
 
 **2. Set Prefect API URL:**
@@ -18,7 +18,7 @@ curl http://localhost:4200/api/health<br/>
 prefect work-pool create my-pool --type process <br/>
 prefect work-pool ls<br/>
 
-## 4.1 Run Worker with nohup
+**4.1 Run Worker with nohup**
 prefect worker start --pool my-pool <br/>
 nohup prefect worker start --pool my-pool > worker.log 2>&1 & <br/>
 
