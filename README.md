@@ -19,6 +19,8 @@ curl http://localhost:4200/api/health<br/>
 
 **4. Create Work Pool and Worker:** <br/>
 prefect work-pool create my-pool --type process <br/>
+prefect worker start --pool my-pool<br/>
+<br/>
 prefect work-pool ls<br/>
 
 **4.1 Run Worker with nohup**

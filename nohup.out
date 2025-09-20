@@ -1,0 +1,4 @@
+Discovered type 'process' for work pool 'my-pool'.
+Worker 'ProcessWorker 8f60c400-8b08-4a57-b092-7c5c169f6436' started!
+Received SIGINT. Sending SIGINT to the None worker (PID 26563)...
+Worker 'ProcessWorker 8f60c400-8b08-4a57-b092-7c5c169f6436' stopped!
